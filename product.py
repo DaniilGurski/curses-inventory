@@ -6,8 +6,8 @@ class Product:
         }
 
         self.id = id
-        self.name = self.limit_characters(name, "name")
-        self.desc = self.limit_characters(desc, "desc")
+        self.name = name
+        self.desc = desc
         self.price = f"{price} kr"
         self.quantity = quantity
 
@@ -19,6 +19,9 @@ class Product:
         return string
         
 
-    def __str__(self) -> str:     
-        return f"{self.id:<4} {self.name:<26} {self.desc}  {self.price:<15}  {self.quantity}"
+    def __str__(self) -> str:  
+        self.name_lim = self.limit_characters(self.name, "name")    # I use self.name instead of name in case to sync changes.
+        self.desc_lim = self.limit_characters(self.desc, "desc")   
+        
+        return f"{self.id:<4} {self.name_lim:<26} {self.desc_lim}  {self.price:<15}  {self.quantity}"
         
