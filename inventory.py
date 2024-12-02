@@ -1,4 +1,4 @@
-from csv import DictReader
+from csv import DictReader, DictWriter
 from product import Product
 
 
@@ -11,23 +11,67 @@ class Inventory():
 
 
     def get_product(self, id): 
-        pass
+        for product in self.products: 
+            if product.id == int(id):
+                return product
+        return None
 
 
-    def remove_product(self, id): 
-        pass
+    def delete_product(self, index): 
+        # removed_product = self.get_product(id)
+        self.products.pop(index)
 
 
     def add_product(self, name, desc, price, quantity):
-        pass
+        new_id = self.create_unquie_id()
+        self.products.append(Product(new_id, name, desc, price, quantity))
+
+        return self.products
 
 
-    def edit_product(self, id, name, desc, price, quantity): 
-        pass
+    def edit_product(self, index, name, desc, price, quantity): 
+        product_to_edit = self.products[index]
+        
+        product_to_edit.name = name
+        product_to_edit.desc = desc
+        product_to_edit.price = price
+        product_to_edit.quantity = quantity
+
+        return self.products
 
 
-    def create_unquie_id(self): 
-        pass
+    def create_unquie_id(self) -> int : 
+        unquie_id = max([product.id for product in self.products]) + 1
+        return unquie_id
+    
+
+    def save_to_inventory(self):
+        try:
+            with open(self.source_file, mode="w") as csvfile:
+                fieldnames = ["id", "name", "desc", "price", "quantity"]
+                writer = DictWriter(csvfile, fieldnames)
+
+                writer.writeheader()
+                for product in self.products:
+                    writer.writerow({
+                        "id": product.id,
+                        "name": product.name,
+                        "desc": product.desc,
+                        "price": product.price,
+                        "quantity": product.quantity
+                    })
+
+                return "Done !"
+            
+        except Exception as error_code:
+
+            # in case file is read-only or corrupt 
+            if isinstance(error_code, OSError) and error_code.errno == 13:
+                print("Cause: File is read-only")
+            else:
+                print(f"Cause: {error_code}")
+                
+            return "Error"
 
 
     @staticmethod
@@ -39,7 +83,7 @@ class Inventory():
 
             for row in reader:
                 # TODO: add type convertations
-                id       = row['id']
+                id       = int(row['id'])
                 name     = row['name']
                 desc     = row['desc']
                 price    = row['price']
