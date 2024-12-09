@@ -66,7 +66,7 @@ def main(stdscr):
                 selected_product_index = len(inventory.products) - 1
                 current_screen = "menu"
 
-            elif key == " ":
+            elif key == "e":
                 current_screen = "edit"
 
         elif current_screen == "new product":

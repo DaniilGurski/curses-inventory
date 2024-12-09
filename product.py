@@ -3,6 +3,7 @@ class Product:
         self.character_limits = {
             "name": 23,
             "desc": 48, 
+            "price": 8,
         }
 
         self.id = id
@@ -22,6 +23,7 @@ class Product:
     def __str__(self) -> str:  
         self.name_lim = self.truncate(self.name, "name")    # I use self.name instead of name in case to sync changes.
         self.desc_lim = self.truncate(self.desc, "desc")   
+        self.price_lim = self.truncate(self.price, "price")
         
-        return f"{self.id:<4} {self.name_lim:<26} {self.desc_lim}  {f'{self.price} kr':<15} {self.quantity}"
+        return f"{self.id:<4} {self.name_lim:<26} {self.desc_lim:<53}  {f'{self.price_lim} kr':<15} {self.quantity}"
         

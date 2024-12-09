@@ -17,7 +17,6 @@ class Interface:
 
     def is_window_small(self):
         self.height, self.width = self.stdsrc.getmaxyx()
-        self.add_string(f"{self.width} {self.height}")
 
         if self.height < 10 or self.width < 120:
             return True
@@ -32,13 +31,13 @@ class Interface:
 
         self.add_string(f"\nHandle this product", 3)
 
-        self.add_string(f"\nSPACE: Edit")
+        self.add_string(f"\nE: Edit")
         self.add_string(f"D: Delete")
         self.add_string(f"ENTER: Go back")
 
     
     def menu_details(self):
-        self.add_string(f"{'Dan4ik':<41} ↑ ↓ = Navigate | ENTER = Select | N = New product | Q = Exit", 1)
+        self.add_string(f"{'Dan4ik':<41} ↑ ↓ = Navigate | ENTER = Select | N = New product | Q = Exit & Save", 1)
         self.add_string("---" * 35)
 
         self.add_string(f"{'#'} {'NAME':>7} {'DESC':>26} {'PRICE':>53} {'QUANTITY':>17}")
