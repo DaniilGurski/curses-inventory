@@ -14,7 +14,15 @@ class Interface:
     def add_string(self, string, color_id=curses.COLOR_WHITE):
         self.stdsrc.addstr(f"{string}\n", curses.color_pair(color_id))
 
-    
+
+    def is_window_small(self):
+        self.height, self.width = self.stdsrc.getmaxyx()
+        self.add_string(f"{self.width} {self.height}")
+
+        if self.height < 10 or self.width < 120:
+            return True
+        
+        
     def product_details(self, product_position): 
         selected_product = self.products[product_position]
         self.add_string(f"Name: {selected_product.name}")

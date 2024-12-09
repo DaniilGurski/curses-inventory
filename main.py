@@ -13,11 +13,19 @@ def main(stdscr):
     inventory = Inventory(items, products_path)
     interface = Interface(stdscr, inventory.products)
     input_manager = InputManager(stdscr)
+    
     selected_product_index = 0
     current_screen = "menu"
 
     while True: 
         stdscr.clear()
+
+        if interface.is_window_small():
+            interface.add_string("Window too small. Please resize !", 3)
+            stdscr.refresh()
+            stdscr.getch()
+            continue
+
         interface.show_screen(current_screen, selected_product_index)
 
         if current_screen == "menu":

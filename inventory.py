@@ -18,7 +18,6 @@ class Inventory():
 
 
     def delete_product(self, index): 
-        # removed_product = self.get_product(id)
         self.products.pop(index)
 
 
