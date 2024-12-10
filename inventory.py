@@ -82,7 +82,6 @@ class Inventory():
             reader = DictReader(file)
 
             for row in reader:
-                # TODO: add type convertations
                 id       = int(row['id'])
                 name     = row['name']
                 desc     = row['desc']
