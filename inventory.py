@@ -1,3 +1,12 @@
+'''
+FILNAMN.PY: Interaktiv produktlager gjort med biblioteket ”Curses”.
+
+__author__  = "Daniil Gurski"
+__version__ = "1.0.0"
+__email__   = "daniil.gurski@elev.ga.ntig.se"
+'''
+
+
 from csv import DictReader, DictWriter
 from product import Product
 
