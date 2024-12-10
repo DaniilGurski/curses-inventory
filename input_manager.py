@@ -16,7 +16,7 @@ class InputManager():
         return input_str
 
     
-    def get_product_input(self,prefix: str):
+    def get_product_input(self, prefix: str):
         name = self.get_input(f"{prefix} name: ")
         desc = self.get_input(f"{prefix} description: ")
         price = self.get_input(f"{prefix} price: ")
