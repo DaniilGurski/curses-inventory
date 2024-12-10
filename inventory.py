@@ -31,10 +31,11 @@ class Inventory():
     def edit_product(self, index, name, desc, price, quantity): 
         product_to_edit = self.products[index]
         
-        product_to_edit.name = name
-        product_to_edit.desc = desc
-        product_to_edit.price = price
-        product_to_edit.quantity = quantity
+        # if the user didn't enter a value, keep the old one
+        product_to_edit.name = name if name != "" else product_to_edit.name
+        product_to_edit.desc = desc if desc != "" else product_to_edit.desc
+        product_to_edit.price = price  if price != "" else product_to_edit.price
+        product_to_edit.quantity = quantity if quantity != "" else product_to_edit.quantity
 
         return self.products
 
