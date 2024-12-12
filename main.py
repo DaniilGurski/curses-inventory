@@ -91,6 +91,7 @@ def main(stdscr):
             current_screen = "menu"
     
         inventory.save_to_inventory()
+        curses.endwin()
 
 
 wrapper(main)
