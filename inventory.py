@@ -9,6 +9,7 @@ __email__   = "daniil.gurski@elev.ga.ntig.se"
 
 from csv import DictReader, DictWriter
 from product import Product
+import os
 
 
 class Inventory(): 
@@ -86,6 +87,15 @@ class Inventory():
     @staticmethod
     def load_inventory(filename): 
         products = []
+        
+        # Check if the file exists
+        if not os.path.exists(filename):
+            # Create the file and write the header row
+            with open(filename, 'w', newline='') as file:
+                writer = DictWriter(file, fieldnames=["id", "name", "desc", "price", "quantity"])
+                writer.writeheader()
+
+            return products
     
         with open(filename, 'r') as file:
             reader = DictReader(file)

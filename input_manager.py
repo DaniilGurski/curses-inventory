@@ -27,7 +27,23 @@ class InputManager():
     def get_product_input(self, prefix: str):
         name = self.get_input(f"{prefix} name: ")
         desc = self.get_input(f"{prefix} description: ")
-        price = self.get_input(f"{prefix} price: ")
-        quantity = self.get_input(f"{prefix} quantity: ")
 
+        while True:
+            price = self.get_input(f"{prefix} price: ")
+
+            try:
+                price = float(price)
+                break
+            except ValueError:
+                continue
+        
+
+        while True:
+            quantity = self.get_input(f"{prefix} quantity: ")
+            try:
+                quantity = int(quantity)
+                break
+            except ValueError:
+                continue
+            
         return (name, desc, price, quantity)

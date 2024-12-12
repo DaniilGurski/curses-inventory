@@ -78,7 +78,7 @@ def main(stdscr):
                 current_screen = "edit"
 
         elif current_screen == "new product":
-            name, desc, price, quantity = input_manager.get_product_input("Enter new product")
+            name, desc, price, quantity =  input_manager.get_product_input("Enter new product")
             updated_product_list = inventory.add_product(name, desc, price, quantity)
             interface.update_products(updated_product_list)
             current_screen = "menu"

@@ -31,7 +31,7 @@ class Product:
     def __str__(self) -> str:  
         self.name_lim = self.truncate(self.name, "name")    # I use self.name instead of name in case to sync changes.
         self.desc_lim = self.truncate(self.desc, "desc")   
-        self.price_lim = self.truncate(self.price, "price")
+        self.price_lim = self.truncate(str(self.price), "price")
         
         return f"{self.id:<4} {self.name_lim:<26} {self.desc_lim:<53}  {f'{self.price_lim} kr':<15} {self.quantity}"
         
